@@ -19,8 +19,8 @@ android {
 }
 
 dependencies {
-    compile project(':picture_library')
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    implementation project(':picture_library')
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
 }

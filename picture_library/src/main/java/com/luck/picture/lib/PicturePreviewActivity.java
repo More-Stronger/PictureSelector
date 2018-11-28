@@ -3,8 +3,6 @@ package com.luck.picture.lib;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
@@ -33,6 +31,9 @@ import com.yalantis.ucrop.model.CutInfo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * author：luck
@@ -131,7 +132,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                         boolean toEqual = PictureMimeType.
                                 mimeToEqual(pictureType, image.getPictureType());
                         if (!toEqual) {
-                            ToastManage.s(mContext,getString(R.string.picture_rule));
+                            ToastManage.s(mContext, getString(R.string.picture_rule));
                             return;
                         }
                     }
@@ -402,7 +403,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                     boolean eqImg = pictureType.startsWith(PictureConfig.IMAGE);
                     String str = eqImg ? getString(R.string.picture_min_img_num, config.minSelectNum)
                             : getString(R.string.picture_min_video_num, config.minSelectNum);
-                    ToastManage.s(mContext,str);
+                    ToastManage.s(mContext, str);
                     return;
                 }
             }
@@ -454,7 +455,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             Throwable throwable = (Throwable) data.getSerializableExtra(UCrop.EXTRA_ERROR);
-            ToastManage.s(mContext,throwable.getMessage());
+            ToastManage.s(mContext, throwable.getMessage());
         }
     }
 
