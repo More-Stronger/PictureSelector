@@ -27,6 +27,7 @@ public class LocalMedia implements Parcelable {
     private boolean compressed;
     private int width;
     private int height;
+    private boolean originalImg;
 
     public LocalMedia() {
 
@@ -63,6 +64,14 @@ public class LocalMedia implements Parcelable {
             pictureType = "image/jpeg";
         }
         return pictureType;
+    }
+
+    public boolean isOriginalImg() {
+        return originalImg;
+    }
+
+    public void setOriginalImg(boolean originalImg) {
+        this.originalImg = originalImg;
     }
 
     public void setPictureType(String pictureType) {

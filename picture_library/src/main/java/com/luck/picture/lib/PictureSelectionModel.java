@@ -2,10 +2,6 @@ package com.luck.picture.lib;
 
 import android.app.Activity;
 import android.content.Intent;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntRange;
-import androidx.annotation.StyleRes;
-import androidx.fragment.app.Fragment;
 
 import com.luck.picture.lib.config.PictureSelectionConfig;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -13,6 +9,11 @@ import com.luck.picture.lib.tools.DoubleUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.FloatRange;
+import androidx.annotation.IntRange;
+import androidx.annotation.StyleRes;
+import androidx.fragment.app.Fragment;
 
 /**
  * author：luck
@@ -381,6 +382,17 @@ public class PictureSelectionModel {
      */
     public PictureSelectionModel isDragFrame(boolean isDragFrame) {
         selectionConfig.isDragFrame = isDragFrame;
+        return this;
+    }
+
+    /**
+     * 是否显示原图按钮
+     *
+     * @param isShowOriginalImg
+     * @return
+     */
+    public PictureSelectionModel isShowOriginalImg(boolean isShowOriginalImg) {
+        selectionConfig.isShowOriginalImg = isShowOriginalImg;
         return this;
     }
 

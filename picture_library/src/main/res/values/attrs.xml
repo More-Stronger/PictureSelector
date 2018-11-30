@@ -23,6 +23,7 @@
     <attr name="picture.checked.style" format="reference" />
     <attr name="picture.bottom.bg" format="reference|color" />
     <attr name="picture.preview.textColor" format="reference|color" />
+    <attr name="picture.original.textColor" format="reference|color" />
     <attr name="picture.complete.textColor" format="reference|color" />
     <attr name="picture.ac_preview.title.textColor" format="reference|color" />
     <attr name="picture.ac_preview.complete.textColor" format="reference|color" />

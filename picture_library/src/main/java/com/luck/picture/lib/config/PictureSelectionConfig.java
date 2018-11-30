@@ -2,7 +2,6 @@ package com.luck.picture.lib.config;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.StyleRes;
 
 import com.luck.picture.lib.R;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -10,6 +9,8 @@ import com.luck.picture.lib.tools.PictureFileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.StyleRes;
 
 /**
  * author：luck
@@ -64,6 +65,7 @@ public final class PictureSelectionConfig implements Parcelable {
     public boolean previewEggs;
     public boolean synOrAsy;
     public boolean isDragFrame;
+    public boolean isShowOriginalImg;
 
     public List<LocalMedia> selectionMedias;
 
@@ -107,6 +109,7 @@ public final class PictureSelectionConfig implements Parcelable {
         synOrAsy = true;
         zoomAnim = true;
         isDragFrame = true;
+        isShowOriginalImg = false;
         outputCameraPath = "";
         compressSavePath = "";
         suffixType = PictureFileUtils.POSTFIX;
@@ -178,6 +181,7 @@ public final class PictureSelectionConfig implements Parcelable {
         dest.writeByte(this.previewEggs ? (byte) 1 : (byte) 0);
         dest.writeByte(this.synOrAsy ? (byte) 1 : (byte) 0);
         dest.writeByte(this.isDragFrame ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.isShowOriginalImg ? (byte) 1 : (byte) 0);
         dest.writeTypedList(this.selectionMedias);
     }
 
@@ -228,6 +232,7 @@ public final class PictureSelectionConfig implements Parcelable {
         this.previewEggs = in.readByte() != 0;
         this.synOrAsy = in.readByte() != 0;
         this.isDragFrame = in.readByte() != 0;
+        this.isShowOriginalImg = in.readByte() != 0;
         this.selectionMedias = in.createTypedArrayList(LocalMedia.CREATOR);
     }
 

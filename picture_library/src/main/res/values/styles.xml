@@ -85,6 +85,8 @@
         <item name="picture.bottom.bg">@color/color_fa</item>
         <!--图片列表预览文字颜色-->
         <item name="picture.preview.textColor">@color/picture_list_text_color</item>
+        <!--原图文字颜色-->
+        <item name="picture.original.textColor">@color/picture_list_text_color</item>
         <!--图片列表已完成文字颜色-->
         <item name="picture.complete.textColor">@color/picture_list_text_color</item>
         <!--图片已选数量圆点背景色-->

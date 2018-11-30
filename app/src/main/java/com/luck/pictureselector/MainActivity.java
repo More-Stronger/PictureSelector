@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CheckBox cb_voice, cb_choose_mode, cb_isCamera, cb_isGif,
             cb_preview_img, cb_preview_video, cb_crop, cb_compress,
             cb_mode, cb_hide, cb_crop_circular, cb_styleCrop, cb_showCropGrid,
-            cb_showCropFrame, cb_preview_audio;
+            cb_showCropFrame, cb_preview_audio,cb_original;
     private int themeId;
     private int chooseMode = PictureMimeType.ofAll();
 
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cb_showCropGrid = (CheckBox) findViewById(R.id.cb_showCropGrid);
         cb_showCropFrame = (CheckBox) findViewById(R.id.cb_showCropFrame);
         cb_preview_audio = (CheckBox) findViewById(R.id.cb_preview_audio);
+        cb_original = (CheckBox) findViewById(R.id.cb_original);
         cb_hide = (CheckBox) findViewById(R.id.cb_hide);
         cb_crop_circular = (CheckBox) findViewById(R.id.cb_crop_circular);
         rgb_crop.setOnCheckedChangeListener(this);
@@ -168,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .isZoomAnim(true)// 图片列表点击 缩放效果 默认true
                         //.imageFormat(PictureMimeType.PNG)// 拍照保存图片格式后缀,默认jpeg
                         //.setOutputCameraPath("/CustomPath")// 自定义拍照保存路径
+                        .isShowOriginalImg(cb_original.isChecked())//是否显示原图
                         .enableCrop(cb_crop.isChecked())// 是否裁剪
                         .compress(cb_compress.isChecked())// 是否压缩
                         .synOrAsy(true)//同步true或异步false 压缩 默认同步
@@ -209,6 +211,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .previewVideo(cb_preview_video.isChecked())// 是否可预览视频
                         .enablePreviewAudio(cb_preview_audio.isChecked()) // 是否可播放音频
                         .isCamera(cb_isCamera.isChecked())// 是否显示拍照按钮
+                        .isShowOriginalImg(cb_original.isChecked())//是否显示原图
                         .enableCrop(cb_crop.isChecked())// 是否裁剪
                         .compress(cb_compress.isChecked())// 是否压缩
                         .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
@@ -254,6 +257,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                     adapter.setList(selectList);
                     adapter.notifyDataSetChanged();
+                    ///storage/emulated/0/Android/data/com.luck.pictureselector/cache/luban_disk_cache/1543462784817206.jpg
+                    ///storage/emulated/0/MagazineUnlock/magazine-unlock-hi1349203.jpg
                     break;
             }
         }

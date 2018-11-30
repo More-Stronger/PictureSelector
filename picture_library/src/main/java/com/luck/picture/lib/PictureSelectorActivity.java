@@ -10,10 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -57,6 +53,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -74,10 +74,11 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
     private ImageView picture_left_back;
     private TextView picture_title, picture_right, picture_tv_ok, tv_empty,
             picture_tv_img_num, picture_id_preview, tv_PlayPause, tv_Stop, tv_Quit,
-            tv_musicStatus, tv_musicTotal, tv_musicTime;
+            tv_musicStatus, tv_musicTotal, tv_musicTime, tv_original_check, picture_id_original;
     private RelativeLayout rl_picture_title;
     private LinearLayout id_ll_ok;
     private RecyclerView picture_recycler;
+    private LinearLayout ll_original_check;
     private PictureImageGridAdapter adapter;
     private List<LocalMedia> images = new ArrayList<>();
     private List<LocalMediaFolder> foldersList = new ArrayList<>();
@@ -137,9 +138,10 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                     }
                 }
                 break;
+            default:
+                break;
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,7 +202,20 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         picture_recycler = (RecyclerView) findViewById(R.id.picture_recycler);
         id_ll_ok = (LinearLayout) findViewById(R.id.id_ll_ok);
         tv_empty = (TextView) findViewById(R.id.tv_empty);
+        ll_original_check = findViewById(R.id.ll_original_check);
+        tv_original_check = findViewById(R.id.tv_original_check);
+        picture_id_original = findViewById(R.id.picture_id_original);
+
         isNumComplete(numComplete);
+
+        if (config.isShowOriginalImg) {
+            ll_original_check.setVisibility(View.VISIBLE);
+            ll_original_check.setOnClickListener(this);
+            tv_original_check.setSelected(false);
+        } else {
+            ll_original_check.setVisibility(View.INVISIBLE);
+        }
+
         if (config.mimeType == PictureMimeType.ofAll()) {
             popupWindow = new PhotoPopupWindow(this);
             popupWindow.setOnItemClickListener(this);
@@ -359,6 +374,8 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                 case PictureConfig.TYPE_AUDIO:
                     // 录音
                     startOpenCameraAudio();
+                    break;
+                default:
                     break;
             }
         }
@@ -520,6 +537,16 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             } else {
                 onResult(images);
             }
+        }
+
+        if (id == R.id.ll_original_check) {
+            //原图
+            tv_original_check.setSelected(!tv_original_check.isSelected());
+            picture_id_original.setSelected(!picture_id_original.isSelected());
+            if (animation != null) {
+                tv_original_check.startAnimation(animation);
+            }
+            //config.isCompress = !tv_original_check.isSelected();
         }
     }
 
@@ -824,6 +851,8 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                     audioDialog(media.getPath());
                 }
                 break;
+            default:
+                break;
         }
     }
 
@@ -1107,6 +1136,8 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             case 1:
                 // 录视频
                 startOpenCameraVideo();
+                break;
+            default:
                 break;
         }
     }

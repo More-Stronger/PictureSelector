@@ -40,4 +40,5 @@
     <string name="picture_video_error">视频已损坏</string>
     <string name="picture_audio_error">音频已损坏</string>
     <string name="picture_confirm">确定</string>
+    <string name="picture_original">原图</string>
 </resources>
