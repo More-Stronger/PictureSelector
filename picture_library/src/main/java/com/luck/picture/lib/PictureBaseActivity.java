@@ -270,6 +270,7 @@ public class PictureBaseActivity extends FragmentActivity {
                 boolean eqTrue = !TextUtils.isEmpty(path) && http;
                 image.setCompressed(eqTrue ? false : true);
                 image.setCompressPath(eqTrue ? "" : path);
+                image.setOriginalImg(!image.isCompressed());
             }
         }
         RxBus.getDefault().post(new EventEntity(PictureConfig.CLOSE_PREVIEW_FLAG));
@@ -434,6 +435,19 @@ public class PictureBaseActivity extends FragmentActivity {
                 && config.selectionMode == PictureConfig.MULTIPLE
                 && selectionMedias != null) {
             images.addAll(images.size() > 0 ? images.size() - 1 : 0, selectionMedias);
+        }
+        if (config.isShowOriginalImg) {
+            //显示原图，并且当前为不压缩，则表示原图选中
+            for (int i = 0; i < images.size(); i++) {
+                LocalMedia localMedia = images.get(i);
+                if (config.isCompress) {
+                    localMedia.setOriginalImg(false);
+                } else {
+                    localMedia.setOriginalImg(true);
+                    localMedia.setCompressed(false);
+                    localMedia.setCompressPath(null);
+                }
+            }
         }
         Intent intent = PictureSelector.putIntentResult(images);
         setResult(RESULT_OK, intent);

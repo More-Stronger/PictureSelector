@@ -45,10 +45,11 @@ import androidx.viewpager.widget.ViewPager;
 public class PicturePreviewActivity extends PictureBaseActivity implements
         View.OnClickListener, Animation.AnimationListener, SimpleFragmentAdapter.OnCallBackActivity {
     private ImageView picture_left_back;
-    private TextView tv_img_num, tv_title, tv_ok;
+    private TextView tv_img_num, tv_title, tv_ok, tv_original_check, picture_id_original;
     private PreviewViewPager viewPager;
     private LinearLayout id_ll_ok;
     private int position;
+    private LinearLayout ll_original_check;
     private LinearLayout ll_check;
     private List<LocalMedia> images = new ArrayList<>();
     private List<LocalMedia> selectImages = new ArrayList<>();
@@ -102,6 +103,12 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
         id_ll_ok.setOnClickListener(this);
         tv_img_num = (TextView) findViewById(R.id.tv_img_num);
         tv_title = (TextView) findViewById(R.id.picture_title);
+
+        ll_original_check = findViewById(R.id.ll_original_check);
+        tv_original_check = findViewById(R.id.tv_original_check);
+        picture_id_original = findViewById(R.id.picture_id_original);
+        initOriginalCheck();
+
         position = getIntent().getIntExtra(PictureConfig.EXTRA_POSITION, 0);
         tv_ok.setText(numComplete ? getString(R.string.picture_done_front_num,
                 0, config.selectionMode == PictureConfig.SINGLE ? 1 : config.maxSelectNum)
@@ -195,12 +202,47 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                     }
                     onImageChecked(position);
                 }
+
+                //滑动后只有图片进行判断是否显示原图  视频和语音不显示
+                int mediaType = PictureMimeType.isPictureType(media.getPictureType());
+                switch (mediaType) {
+                    case PictureConfig.TYPE_IMAGE:
+                        // image
+                        initOriginalCheck();
+                        break;
+                    case PictureConfig.TYPE_VIDEO:
+                        // video
+                        ll_original_check.setVisibility(View.INVISIBLE);
+                        break;
+                    case PictureConfig.TYPE_AUDIO:
+                        // audio
+                        ll_original_check.setVisibility(View.INVISIBLE);
+                        break;
+                    default:
+                        break;
+                }
+
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
             }
         });
+    }
+
+    /**
+     * 初始化原图选中控件
+     */
+    private void initOriginalCheck() {
+        if (config.isShowOriginalImg) {
+            ll_original_check.setVisibility(View.VISIBLE);
+            ll_original_check.setOnClickListener(this);
+            //显示原图且压缩，则原图未选中    显示原图且不压缩，则原图选中
+            tv_original_check.setSelected(!config.isCompress);
+            picture_id_original.setSelected(!config.isCompress);
+        } else {
+            ll_original_check.setVisibility(View.INVISIBLE);
+        }
     }
 
     /**
@@ -386,7 +428,6 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
     public void onAnimationRepeat(Animation animation) {
     }
 
-
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -422,6 +463,14 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
             } else {
                 onResult(selectImages);
             }
+        } else if (id == R.id.ll_original_check) {
+            //原图
+            tv_original_check.setSelected(!tv_original_check.isSelected());
+            picture_id_original.setSelected(!picture_id_original.isSelected());
+            if (animation != null) {
+                tv_original_check.startAnimation(animation);
+            }
+            config.isCompress = !tv_original_check.isSelected();
         }
     }
 
@@ -452,13 +501,14 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                     }
                     finish();
                     break;
+                default:
+                    break;
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
             Throwable throwable = (Throwable) data.getSerializableExtra(UCrop.EXTRA_ERROR);
             ToastManage.s(mContext, throwable.getMessage());
         }
     }
-
 
     @Override
     public void onBackPressed() {

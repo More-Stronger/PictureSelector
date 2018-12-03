@@ -110,7 +110,6 @@ public class LocalMedia implements Parcelable {
         this.duration = duration;
     }
 
-
     public boolean isChecked() {
         return isChecked;
     }
@@ -193,6 +192,7 @@ public class LocalMedia implements Parcelable {
         dest.writeInt(this.mimeType);
         dest.writeString(this.pictureType);
         dest.writeByte(this.compressed ? (byte) 1 : (byte) 0);
+        dest.writeByte(this.originalImg ? (byte) 1 : (byte) 0);
         dest.writeInt(this.width);
         dest.writeInt(this.height);
     }
@@ -209,6 +209,7 @@ public class LocalMedia implements Parcelable {
         this.mimeType = in.readInt();
         this.pictureType = in.readString();
         this.compressed = in.readByte() != 0;
+        this.originalImg = in.readByte() != 0;
         this.width = in.readInt();
         this.height = in.readInt();
     }

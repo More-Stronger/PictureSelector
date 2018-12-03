@@ -104,6 +104,8 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                 case DISMISS_DIALOG:
                     dismissDialog();
                     break;
+                default:
+                    break;
             }
         }
     };
@@ -186,12 +188,10 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         }
     }
 
-
     /**
      * init views
      */
     private void initView(Bundle savedInstanceState) {
-
         rl_picture_title = (RelativeLayout) findViewById(R.id.rl_picture_title);
         picture_left_back = (ImageView) findViewById(R.id.picture_left_back);
         picture_title = (TextView) findViewById(R.id.picture_title);
@@ -211,7 +211,17 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         if (config.isShowOriginalImg) {
             ll_original_check.setVisibility(View.VISIBLE);
             ll_original_check.setOnClickListener(this);
-            tv_original_check.setSelected(false);
+            if (!selectionMedias.isEmpty() && selectionMedias.get(0).isOriginalImg()) {
+                //已经选择过图片，并且原图是选中状态
+                tv_original_check.setSelected(true);
+                picture_id_original.setSelected(true);
+                config.isCompress = false;
+            } else {
+                //默认原图选中状态false   压缩true
+                tv_original_check.setSelected(false);
+                picture_id_original.setSelected(false);
+                config.isCompress = true;
+            }
         } else {
             ll_original_check.setVisibility(View.INVISIBLE);
         }
@@ -546,7 +556,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             if (animation != null) {
                 tv_original_check.startAnimation(animation);
             }
-            //config.isCompress = !tv_original_check.isSelected();
+            config.isCompress = !tv_original_check.isSelected();
         }
     }
 
@@ -856,7 +866,6 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         }
     }
 
-
     /**
      * change image selector state
      *
@@ -906,7 +915,6 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             }
         }
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -1049,6 +1057,8 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                         }
                     }
                     break;
+                default:
+                    break;
             }
         } else if (resultCode == RESULT_CANCELED) {
             if (config.camera) {
@@ -1057,6 +1067,11 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         } else if (resultCode == UCrop.RESULT_ERROR) {
             Throwable throwable = (Throwable) data.getSerializableExtra(UCrop.EXTRA_ERROR);
             ToastManage.s(mContext, throwable.getMessage());
+        }
+        if (config.isShowOriginalImg) {
+            //显示原图且压缩，则原图未选中    显示原图且不压缩，则原图选中
+            tv_original_check.setSelected(!config.isCompress);
+            picture_id_original.setSelected(!config.isCompress);
         }
     }
 
@@ -1072,7 +1087,6 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             }
         }
     }
-
 
     /**
      * 手动添加拍照后的相片到图片列表，并设为选中
