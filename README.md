@@ -42,7 +42,7 @@
 ##### 3.2主题配置
 
 	  <!--导航栏背景色 默认是黑色-->
-          <item name="navigationBarColor">@color/black</item>
+	  <item name="navigationBarColor">@color/black</item>
 	
 #### ==========华丽的分割线，原作者Github链接如下==========
 ##### https://github.com/LuckSiege/PictureSelector
