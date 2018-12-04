@@ -6,7 +6,7 @@
    	        2.导航栏颜色修改并将默认样式导航栏颜色改为黑色
 		3.迁移androidx
 
-![original.gif](https://github.com/More-Stronger/PictureSelector/tree/master/image/original.gif)
+![original.gif](https://github.com/More-Stronger/PictureSelector/blob/master/image/original.gif)
    
 ### **如何使用：**
 
@@ -27,7 +27,7 @@
 	   
 #### 3.使用方法
 
-######## 3.1功能配置
+####    3.1功能配置
 
 	 .isShowOriginalImg(false)
 	 是否显示原图，默认为false不显示。 
@@ -39,10 +39,10 @@
 	      如传入已选图片，则通过获取传入图片LocalMedia对象中的originalImg进行判断原图选择状态、压缩状态；
 	      如传入已选图片为空或者不传入已选图片，则原图默认originalImg为false,compressed为true;
 
-######## 3.2主题配置
+####    3.2主题配置
 
-	<!--导航栏背景色 默认是黑色-->
-        <item name="navigationBarColor">@color/black</item>
+	  <!--导航栏背景色 默认是黑色-->
+          <item name="navigationBarColor">@color/black</item>
 	
 #### ==========华丽的分割线，原作者Github链接如下==========
 #### https://github.com/LuckSiege/PictureSelector
