@@ -22,9 +22,9 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':ucrop')
     //noinspection GradleCompatible
-    api 'androidx.appcompat:appcompat:1.0.2'
+    api "androidx.appcompat:appcompat:${cfgs.appcompat}"
     //noinspection GradleCompatible
-    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api "androidx.recyclerview:recyclerview:${cfgs.recyclerview}"
     api "com.github.bumptech.glide:glide:${cfgs.glide}"
     api "io.reactivex.rxjava2:rxjava:${cfgs.rxjava}"
     api "io.reactivex.rxjava2:rxandroid:${cfgs.rxandroid}"

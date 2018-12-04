@@ -13,7 +13,7 @@
   limitations under the License.
   -->
 <resources>
-
+    <attr name="navigationBarColor" format="reference|color" />
     <attr name="picture.title.textColor" format="reference|color" />
     <attr name="picture.right.textColor" format="reference|color" />
     <attr name="picture.leftBack.icon" format="reference" />

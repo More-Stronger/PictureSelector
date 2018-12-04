@@ -15,6 +15,8 @@
         <item name="colorPrimary">@color/white</item>
         <!--状态栏背景色-->
         <item name="colorPrimaryDark">@color/white</item>
+        <!--导航栏背景色-->
+        <item name="navigationBarColor">@color/black</item>
         <!--是否改变图片列表界面状态栏字体颜色为黑色-->
         <item name="picture.statusFontColor">true</item>
         <!--返回键图标-->
@@ -37,6 +39,8 @@
         <item name="picture.bottom.bg">@color/color_fa</item>
         <!--图片列表预览文字颜色-->
         <item name="picture.preview.textColor">@color/tab_color_false</item>
+        <!--原图文字颜色-->
+        <item name="picture.original.textColor">@color/tab_color_false</item>
         <!--图片列表已完成文字颜色-->
         <item name="picture.complete.textColor">@color/tab_color_false</item>
         <!--图片已选数量圆点背景色-->
@@ -68,6 +72,8 @@
         <item name="colorPrimary">@color/blue</item>
         <!--状态栏背景色-->
         <item name="colorPrimaryDark">@color/blue</item>
+        <!--导航栏背景色-->
+        <item name="navigationBarColor">@color/black</item>
         <!--是否改变图片列表界面状态栏字体颜色为黑色-->
         <item name="picture.statusFontColor">false</item>
         <!--返回键图标-->
@@ -90,6 +96,8 @@
         <item name="picture.bottom.bg">@color/color_fa</item>
         <!--图片列表预览文字颜色-->
         <item name="picture.preview.textColor">@color/blue</item>
+        <!--原图文字颜色-->
+        <item name="picture.original.textColor">@color/blue</item>
         <!--图片列表已完成文字颜色-->
         <item name="picture.complete.textColor">@color/blue</item>
         <!--图片已选数量圆点背景色-->
@@ -114,7 +122,6 @@
         <item name="picture.folder_checked_dot">@drawable/orange_oval</item>
     </style>
 
-
     <!--新浪微博样式，注意每一项都不能少-->
     <style name="picture.Sina.style" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -122,6 +129,8 @@
         <item name="colorPrimary">@color/white</item>
         <!--状态栏背景色-->
         <item name="colorPrimaryDark">@color/white</item>
+        <!--导航栏背景色-->
+        <item name="navigationBarColor">@color/black</item>
         <!--是否改变图片列表界面状态栏字体颜色为黑色-->
         <item name="picture.statusFontColor">true</item>
         <!--返回键图标-->
@@ -144,6 +153,8 @@
         <item name="picture.bottom.bg">@color/color_fa</item>
         <!--图片列表预览文字颜色-->
         <item name="picture.preview.textColor">@color/picture_list_sina_text_color</item>
+        <!--原图文字颜色-->
+        <item name="picture.original.textColor">@color/picture_list_sina_text_color</item>
         <!--图片列表已完成文字颜色-->
         <item name="picture.complete.textColor">@color/picture_list_sina_text_color</item>
         <!--图片已选数量圆点背景色-->

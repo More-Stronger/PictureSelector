@@ -51,7 +51,7 @@ public class PictureBaseActivity extends FragmentActivity {
     protected Context mContext;
     protected PictureSelectionConfig config;
     protected boolean openWhiteStatusBar, numComplete;
-    protected int colorPrimary, colorPrimaryDark;
+    protected int navigationBarColor, colorPrimaryDark;
     protected String cameraPath, outputCameraPath;
     protected String originalPath;
     protected PictureDialog dialog;
@@ -74,7 +74,7 @@ public class PictureBaseActivity extends FragmentActivity {
     public void immersive() {
         ImmersiveManage.immersiveAboveAPI23(this
                 , colorPrimaryDark
-                , colorPrimary
+                , navigationBarColor
                 , openWhiteStatusBar);
     }
 
@@ -111,8 +111,8 @@ public class PictureBaseActivity extends FragmentActivity {
         // 是否开启数字勾选模式
         config.checkNumMode = AttrsUtils.getTypeValueBoolean
                 (this, R.attr.picture_style_checkNumMode);
-        // 标题栏背景色
-        colorPrimary = AttrsUtils.getTypeValueColor(this, R.attr.colorPrimary);
+        // 导航栏背景色
+        navigationBarColor = AttrsUtils.getTypeValueColor(this, R.attr.navigationBarColor);
         // 状态栏背景色
         colorPrimaryDark = AttrsUtils.getTypeValueColor(this, R.attr.colorPrimaryDark);
         // 已选图片列表

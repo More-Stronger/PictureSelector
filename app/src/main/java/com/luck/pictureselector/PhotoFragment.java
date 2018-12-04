@@ -3,11 +3,6 @@ package com.luck.pictureselector;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +20,12 @@ import com.luck.pictureselector.adapter.GridImageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * author：luck
@@ -49,7 +50,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener,
     private CheckBox cb_voice, cb_choose_mode, cb_isCamera, cb_isGif,
             cb_preview_img, cb_preview_video, cb_crop, cb_compress,
             cb_mode, cb_hide, cb_crop_circular, cb_styleCrop, cb_showCropGrid,
-            cb_showCropFrame, cb_preview_audio;
+            cb_showCropFrame, cb_preview_audio, cb_original;
     private int themeId;
     private int chooseMode = PictureMimeType.ofAll();
 
@@ -86,6 +87,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener,
         cb_preview_audio = (CheckBox) rootView.findViewById(R.id.cb_preview_audio);
         cb_hide = (CheckBox) rootView.findViewById(R.id.cb_hide);
         cb_crop_circular = (CheckBox) rootView.findViewById(R.id.cb_crop_circular);
+        cb_original = (CheckBox) rootView.findViewById(R.id.cb_original);
         rgb_crop.setOnCheckedChangeListener(this);
         rgb_style.setOnCheckedChangeListener(this);
         rgb_photo_mode.setOnCheckedChangeListener(this);
@@ -145,6 +147,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener,
                         .isCamera(cb_isCamera.isChecked())
                         .enableCrop(cb_crop.isChecked())
                         .compress(cb_compress.isChecked())
+                        .isShowOriginalImg(cb_original.isChecked())//是否显示原图
                         .glideOverride(160, 160)
                         .previewEggs(true)
                         .withAspectRatio(aspect_ratio_x, aspect_ratio_y)
@@ -171,6 +174,7 @@ public class PhotoFragment extends Fragment implements View.OnClickListener,
                         .isCamera(cb_isCamera.isChecked())
                         .enableCrop(cb_crop.isChecked())
                         .compress(cb_compress.isChecked())
+                        .isShowOriginalImg(cb_original.isChecked())//是否显示原图
                         .glideOverride(160, 160)
                         .withAspectRatio(aspect_ratio_x, aspect_ratio_y)
                         .hideBottomControls(cb_hide.isChecked() ? false : true)
