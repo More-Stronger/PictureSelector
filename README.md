@@ -27,7 +27,7 @@
 	   
 #### 3.增加功能
 
-#####3.1功能配置
+##### 3.1功能配置
 
 	 .isShowOriginalImg(false)
 	 是否显示原图，默认为false不显示。 
@@ -39,12 +39,13 @@
 	      如传入已选图片，则通过获取传入图片LocalMedia对象中的originalImg进行判断原图选择状态、压缩状态；
 	      如传入已选图片为空或者不传入已选图片，则原图默认originalImg为false,compressed为true;
 
-#####3.2主题配置
+##### 3.2主题配置
 
 	  <!--导航栏背景色 默认是黑色-->
           <item name="navigationBarColor">@color/black</item>
 	
 #### ==========华丽的分割线，原作者Github链接如下==========
-#### https://github.com/LuckSiege/PictureSelector
-     总结：使用方法和LuckSiege/PictureSelector一样，在功能配置上增加原图选择  在主题配置中改变导航栏颜色使用方式
+##### https://github.com/LuckSiege/PictureSelector
+
+      总结：使用方法和LuckSiege/PictureSelector一样，在功能配置上增加原图选择  在主题配置中改变导航栏颜色使用方式
 	
